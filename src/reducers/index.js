@@ -5,8 +5,8 @@ import counter from './counter'
 import user from './user'
 
 const rootReducers = combineReducers({
-	counter,
-	user
+  counter,
+  user
 })
 
-export default rootReducers;
+export default rootReducers
