@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import propTypes from 'prop-types'
-import { increment, decrement } from './actions'
-// import { bindActionCreators } from 'redux'
+import * as types from './actions'
+import { bindActionCreators } from 'redux'
+import User from './components/user'
 
 class App extends Component {
   render() {
@@ -18,6 +19,7 @@ class App extends Component {
             Decrease
           </button>
         </p>
+        <User />
       </div>
     )
   }
@@ -29,12 +31,9 @@ const mapStateToProps = state => {
   }
 }
 
-// const mapDispatchToProps = dispatch => {
-//   return {
-//     increment: bindActionCreators(increment, dispatch),
-//     decrement: bindActionCreators(decrement, dispatch)
-//   }
-// }
+const mapDispatchToProps = dispatch => {
+  return bindActionCreators(types, dispatch)
+}
 
 App.propTypes = {
   counter: propTypes.number.isRequired,
@@ -42,11 +41,7 @@ App.propTypes = {
   decrement: propTypes.func.isRequired
 }
 
-// export default connect(
-//   mapStateToProps,
-//   mapDispatchToProps
-// )(App)
 export default connect(
   mapStateToProps,
-  { increment, decrement }
+  mapDispatchToProps
 )(App)
